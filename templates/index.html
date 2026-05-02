@@ -75,6 +75,12 @@
 {% for item in entries %}
     <div class="entry">
         {{ item.food }} — {{ item.calories }} cal, {{ item.protein }} g protein
+
+        <form method="POST" action="/delete/{{ loop.index0 }}" style="display:inline;">
+            <button style="background:#ff3b30; padding:4px 8px; font-size:14px; margin-left:10px;">
+                Delete
+            </button>
+        </form>
     </div>
 {% endfor %}
 
