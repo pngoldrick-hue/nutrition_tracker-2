@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect
 import json
 from datetime import date
+DAILY_GOAL = 2400
 
 app = Flask(__name__)
 
