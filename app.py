@@ -50,11 +50,18 @@ def index():
         return redirect("/")
 
     entries, total_cal, total_pro = get_daily_totals()
-    return render_template("index.html", entries=entries,
-                           total_cal=total_cal, total_pro=total_pro)
+
+    remaining = DAILY_GOAL - total_cal
+    if remaining < 0:
+        remaining = 0
+
+    return render_template("index.html",
+                           entries=entries,
+                           total_cal=total_cal,
+                           total_pro=total_pro,
+                           remaining=remaining,
+                           goal=DAILY_GOAL)
     
-if __name__ == "__main__":
-    app.run(debug=True)
 @app.route("/delete/<int:index>", methods=["POST"])
 def delete_entry(index):
     data = load_data()
@@ -65,3 +72,6 @@ def delete_entry(index):
         save_data(data)
 
     return redirect("/")
+    
+if __name__ == "__main__":
+    app.run(debug=True)
