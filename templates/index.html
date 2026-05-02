@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Nutrition Tracker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        h2, h3 {
+            text-align: center;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 6px 0;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            background-color: #007AFF;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 18px;
+        }
+
+        .totals {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f2f2f2;
+            border-radius: 6px;
+            font-size: 18px;
+        }
+
+        .entry {
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+
+<h2>Calorie & Protein Tracker</h2>
+
+<form method="POST">
+    <input name="food" placeholder="Food name" required>
+    <input name="calories" placeholder="Calories" type="number" required>
+    <input name="protein" placeholder="Protein (g)" type="number" step="0.1" required>
+    <button type="submit">Add Entry</button>
+</form>
+
+<div class="totals">
+    <p><strong>Today's Totals</strong></p>
+    <p>Calories: {{ total_cal }}</p>
+    <p>Protein: {{ total_pro }} g</p>
+</div>
+
+<h3>Entries</h3>
+
+{% for item in entries %}
+    <div class="entry">
+        {{ item.food }} — {{ item.calories }} cal, {{ item.protein }} g protein
+    </div>
+{% endfor %}
+
+</body>
+</html>
