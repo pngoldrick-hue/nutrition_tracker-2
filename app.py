@@ -54,3 +54,13 @@ def index():
 
 if __name__ == "__main__":
     app.run(debug=True)
+@app.route("/delete/<int:index>", methods=["POST"])
+def delete_entry(index):
+    data = load_data()
+    today = str(date.today())
+
+    if today in data and 0 <= index < len(data[today]):
+        data[today].pop(index)
+        save_data(data)
+
+    return redirect("/")
